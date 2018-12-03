@@ -11,12 +11,15 @@ class Main {
         //System.out.println(searchTitle());
         List<String> monsterBook = new ArrayList<>();
         String completeMonsterBook;
+        List<String> awoSkillList = new ArrayList<>();
+        isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"),  awoSkillList);
 
-        System.out.println(isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp")));
-        /*
-        System.out.println(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=4"));
-        for (int monsterID = 1; monsterID <= 7; monsterID++) {
-            System.out.println(searchSkill(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=" + monsterID)));
+        System.out.println(listToString(awoSkillList));
+
+
+//       System.out.println(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=5"));
+/*        for (int monsterID = 1; monsterID <= 3; monsterID++) {
+            System.out.println(isSkill(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=" + monsterID));
         }
 
         System.out.println(searchName(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=" + monsterID)) +
@@ -38,12 +41,15 @@ class Main {
           */
 
 
-    public static String isSkill(String html){
+    public static void isSkill(String html, List<String> skillList){
         boolean skillExist = true;
         String htmlText = html;
         List<String> workingID = new ArrayList<>();
         int amount = 0;
-        for(int i = 1; i <=70; i++){
+        String descStart = "</td><td style=\"padding-top: 8px;\">";
+        String descEnd = "<hr class=\"awokenline\"></td><td style=\"width: 100%;\">";
+
+        for(int i = 1; i <= 100; i++){
             String start = "awokenskill-list.asp?s=" + i + "\"";
             if (htmlText.indexOf(start) == -1) {
                 skillExist = false;
@@ -51,10 +57,10 @@ class Main {
             else{
                 workingID.add(start + i);
                 amount++;
+                skillList.add(Integer.toString(i) + "\n");
             }
         }
 
-        return listToString(workingID) + " " + amount;
     }
 
     public static String searchName(String html) {
@@ -199,16 +205,16 @@ class Main {
     }
 
     public static String listToString(List<String> monsters) {
-        String names = "";
+        String stat = "";
 
         for (int i = 0; i < monsters.size(); i++) {
-            names += monsters.get(i);
+            stat += monsters.get(i);
             if (i != monsters.size() - 1) {
-                names += ", ";
+                stat += "";
             }
         }
 
-        return names;
+        return stat;
     }
 
 
