@@ -14,7 +14,6 @@ class Main {
         List<String> awoSkillList = new ArrayList<>();
         isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"),  awoSkillList);
 
-        System.out.println(listToString(awoSkillList));
 
 
 //       System.out.println(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=5"));
@@ -60,6 +59,7 @@ class Main {
                 skillList.add(Integer.toString(i) + "\n");
             }
         }
+        //TODO add name next to skill id
 
     }
 
@@ -219,3 +219,8 @@ class Main {
 
 
 }
+/*
+git add *
+git commit -m 'message'
+git push origin master
+ */
