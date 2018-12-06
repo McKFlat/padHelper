@@ -12,15 +12,23 @@ class Main {
         List<String> monsterBook = new ArrayList<>();
         String completeMonsterBook;
         List<String> awoSkillList = new ArrayList<>();
-        isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"),  awoSkillList);
+        List<String> awoNameEffectList = new ArrayList<>();
+
+
+        isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
+
+        System.out.println(listToString(awoSkillList));
+       // skillNameEffect(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=5"), awoSkillList);
+
 
 
 
 //       System.out.println(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=5"));
-/*        for (int monsterID = 1; monsterID <= 3; monsterID++) {
-            System.out.println(isSkill(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=" + monsterID));
+      for (int monsterID = 3; monsterID <= 9; monsterID++) {
+            skillNameEffect(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=" + monsterID), awoSkillList);
         }
-
+        System.out.println(listToString(awoNameEffectList));
+/*
         System.out.println(searchName(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=" + monsterID)) +
                 " " + monsterID);
         monsterBook.add(searchName(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=" + monsterID)));
@@ -44,23 +52,34 @@ class Main {
         boolean skillExist = true;
         String htmlText = html;
         List<String> workingID = new ArrayList<>();
-        int amount = 0;
-        String descStart = "</td><td style=\"padding-top: 8px;\">";
-        String descEnd = "<hr class=\"awokenline\"></td><td style=\"width: 100%;\">";
 
-        for(int i = 1; i <= 100; i++){
+        for(int i = 1; i <= 80; i++){
             String start = "awokenskill-list.asp?s=" + i + "\"";
             if (htmlText.indexOf(start) == -1) {
                 skillExist = false;
             }
             else{
                 workingID.add(start + i);
-                amount++;
                 skillList.add(Integer.toString(i) + "\n");
             }
         }
+
+        // **** Adding skill name next to skill ID number
         //TODO add name next to skill id
 
+        //System.out.println(listToString(skillList));
+
+    }
+
+    public static void skillNameEffect(String html, List<String> skillList){
+        String descStart = "</td><td style=\"padding-top: 8px;\">";
+        String descEnd = "<hr class=\"awokenline\"></td><td style=\"width: 100%;\">";
+
+        String htmlText = html;
+        List<String> name = skillList;
+
+        name.add(htmlText.substring(htmlText.indexOf(descStart) + descStart.length(), htmlText.indexOf(descEnd)) + "\n");
+        System.out.println(listToString(name));
     }
 
     public static String searchName(String html) {
