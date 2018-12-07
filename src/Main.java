@@ -10,30 +10,42 @@ class Main {
     public static void main(String[] args) {
         //System.out.println(searchTitle());
         List<String> monsterBook = new ArrayList<>();
+        List<String> skillBook = new ArrayList<>();
         String completeMonsterBook;
         List<String> awoSkillList = new ArrayList<>();
         List<String> awoNameEffectList = new ArrayList<>();
 
+        //delete after tests
+        List<String> finished = new ArrayList<>();
+        List<String> one = new ArrayList<>();
+        List<String> two = new ArrayList<>();
+
+
+        one.add("1");
+        one.add("2");
+        one.add("3");
+        two.add("one");
+        two.add("two");
+        two.add("three");
+
+
 
         isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
 
-        System.out.println(listToString(awoSkillList));
-       // skillNameEffect(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=5"), awoSkillList);
-
-
+       // skillNameEffect(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList, skillBook);
 
 
 //       System.out.println(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=5"));
-      for (int monsterID = 3; monsterID <= 9; monsterID++) {
-            skillNameEffect(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=" + monsterID), awoSkillList);
-        }
-        System.out.println(listToString(awoNameEffectList));
+    for (int monsterID = 3; monsterID <= awoSkillList.size()-1; monsterID++) {
+          skillNameEffect(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=" + awoSkillList.get(monsterID)), awoNameEffectList);
+         }
+
+        System.out.println( awoSkillList.size() + " | | " + awoNameEffectList.size());
+        listConcatination(skillBook, awoSkillList, awoNameEffectList);
+        System.out.println(listToString(skillBook));
+
 /*
-        System.out.println(searchName(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=" + monsterID)) +
-                " " + monsterID);
-        monsterBook.add(searchName(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=" + monsterID)));
-        System.out.println(monsterBook.get(monsterID - 1));
-    }
+
 
 */
 
@@ -60,7 +72,7 @@ class Main {
             }
             else{
                 workingID.add(start + i);
-                skillList.add(Integer.toString(i) + "\n");
+                skillList.add(Integer.toString(i) + " ");
             }
         }
 
@@ -78,9 +90,11 @@ class Main {
         String htmlText = html;
         List<String> name = skillList;
 
-        name.add(htmlText.substring(htmlText.indexOf(descStart) + descStart.length(), htmlText.indexOf(descEnd)) + "\n");
-        System.out.println(listToString(name));
+        name.add(htmlText.substring(htmlText.indexOf(descStart) + descStart.length(), htmlText.indexOf(descEnd)) + " ");
+
     }
+
+
 
     public static String searchName(String html) {
         String htmlText = html;
@@ -236,7 +250,12 @@ class Main {
         return stat;
     }
 
+    public static void listConcatination(List<String> finished, List<String> first, List<String> second){
 
+        for(int i = 0; i < second.size()-1; i++){
+            finished.add(first.get(i) + second.get(i) + "\n");
+        }
+    }
 }
 /*
 git add *
