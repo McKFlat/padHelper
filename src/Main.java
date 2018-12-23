@@ -1,9 +1,11 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.*;
+import java.util.List;
+import javax.imageio.*;
 
 
 class Main {
@@ -15,19 +17,21 @@ class Main {
         List<String> awoSkillList = new ArrayList<>();
         List<String> awoNameEffectList = new ArrayList<>();
 
-        //delete after tests
-        List<String> finished = new ArrayList<>();
-        List<String> one = new ArrayList<>();
-        List<String> two = new ArrayList<>();
 
 
-        one.add("1");
-        one.add("2");
-        one.add("3");
-        two.add("one");
-        two.add("two");
-        two.add("three");
 
+
+
+/*
+        System.out.println(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=4"));
+
+
+try {
+    saveImage("http://www.puzzledragonx.com/en/img/book/1.png");
+}
+catch(IOException e){
+    System.out.println(e);
+}
 
 
         isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
@@ -44,20 +48,26 @@ class Main {
         listConcatination(skillBook, awoSkillList, awoNameEffectList);
         System.out.println(listToString(skillBook));
 
-/*
 
 
-*/
 
+
+        //TODO~~~~~SAVE ALL IMAGES~~~~~
+        try {
+            saveImage("http://www.puzzledragonx.com/en/img/book/1.png");
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
 
         //TODO~~~~~ENABLE ONLY WHEN completeMonsterBook is finished~~~~~
         //completeMonsterBook = listToString(monsterBook);
-        // writeUsingFileWriter(completeMonsterBook);
+        // writeUsingFileWriter(completeMonsterBook); */
     }
-        /*TODO~~~~~ELEMENT, EVOLUTION TREE, MIN/MAX STATS/WITH +
-          TODO~~~~~AWOKEN skill, SUPER AWOKEN, MAYBE DROP LOCATIONS
+     //     TODO~~~~~EVOLUTION TREE, MAX STATS
+     //     TODO~~~~~AWOKEN skill, SUPER AWOKEN, MAYBE DROP LOCATIONS, Type
 
-          */
+
 
 
     public static void isSkill(String html, List<String> skillList){
@@ -93,8 +103,6 @@ class Main {
         name.add(htmlText.substring(htmlText.indexOf(descStart) + descStart.length(), htmlText.indexOf(descEnd)) + " ");
 
     }
-
-
 
     public static String searchName(String html) {
         String htmlText = html;
@@ -198,7 +206,47 @@ class Main {
         return cost;
     }
 
+    public static String findElement(String html){
+        String monElement = "";
+        String water = "nofollow\">Water";
+        String fire = "nofollow\">Fire";
+        String wood ="nofollow\">Wood";
+        String light = "nofollow\">Light";
+        String dark = "nofollow\">Dark";
 
+        if(monElement.length() < 1 && html.indexOf(water) > 0 ) {
+                monElement += "Water";
+        }else if (monElement.length() > 1 && html.indexOf(water) > 0) {
+                monElement += "subWater"; //Sub Element
+            }
+
+
+        if(monElement.length() < 1 && html.indexOf(fire) > 0) {
+                monElement += "Fire";
+        }else if (monElement.length() > 1 && html.indexOf(fire) > 0) {
+            monElement += "subFire"; //Sub Element
+        }
+
+        if(monElement.length() < 1 && html.indexOf(wood) > 0) {
+                monElement += "Wood";
+        }else if (monElement.length() > 1 && html.indexOf(wood) > 0) {
+            monElement += "subWood"; //Sub Element
+        }
+
+        if(monElement.length() < 1 && html.indexOf(light) > 0){
+                monElement += "Light";
+        }else if (monElement.length() > 1 && html.indexOf(light) > 0) {
+            monElement += "subLight"; //Sub Element
+        }
+
+        if(monElement.length() < 1 && html.indexOf(dark) > 0) {
+                monElement += "Dark";
+        }else if (monElement.length() > 1 && html.indexOf(dark) > 0) {
+            monElement += "subDark"; //Sub Element
+        }
+
+        return monElement;
+   }
 
     //TODO~~~~~SEPARATE MONSTERS BY NEW LINE, STATS BY | in listToString
 
@@ -219,7 +267,7 @@ class Main {
     }
 
     public static void writeUsingFileWriter(String data) {
-        File file = new File("/Users/Arctic/MonsterBook.txt"); //creates a new file called MonsterBook.txt
+        File file = new File("C:\\Users\\Arctic\\Desktop\\Coding Projects\\readHTMLtoTxt\\MonsterBook.txt"); //creates a new file called MonsterBook.txt
         FileWriter fr = null;
 
         try {
@@ -256,9 +304,19 @@ class Main {
             finished.add(first.get(i) + second.get(i) + "\n");
         }
     }
+
+    public static void saveImage(String imageUrl) throws IOException {
+
+        BufferedImage image = null;
+        String MonsterID = imageUrl.substring(imageUrl.indexOf("book/" )+5);
+        URL url = new URL(imageUrl);
+        image = ImageIO.read(url);
+
+        File file = new File("C:\\Users\\Arctic\\Desktop\\Coding Projects\\readHTMLtoTxt\\MonsterBookImages\\" + MonsterID );
+        System.out.println(MonsterID);
+
+        ImageIO.write(image, "png", file);
+
+    }
+
 }
-/*
-git add *
-git commit -m 'message'
-git push origin master
- */
