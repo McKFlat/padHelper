@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d378e20-6cd6-4617-9a13-ec192ff8cb34" name="Default" comment="list con">
-      <change afterPath="$PROJECT_DIR$/Structure.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/readHTMLtoTxt/Main.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,16 +17,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="57" selection-start-line="11" selection-start-column="57" selection-end-line="11" selection-end-column="57" />
+            <state relative-caret-position="346">
+              <caret line="47" column="75" selection-start-line="47" selection-start-column="75" selection-end-line="47" selection-end-column="75" />
               <folding>
+                <element signature="e#0#13637#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="method#isSkill#0;class#Main#0" />
-                <element signature="method#skillNameEffect#0;class#Main#0" />
                 <element signature="method#searchSkill#0;class#Main#0" />
+                <element signature="e#5218#5525#1" />
+                <element signature="method#skillNameEffect#0;class#Main#0" />
                 <element signature="method#searchName#0;class#Main#0" />
                 <element signature="method#searchAwoken#0;class#Main#0" />
                 <element signature="method#isAssist#0;class#Main#0" />
@@ -36,12 +35,18 @@
                 <element signature="method#findElement#0;class#Main#0" />
                 <element signature="method#findMaxStat#0;class#Main#0" />
                 <element signature="method#readHTML#0;class#Main#0" />
-                <element signature="method#writeUsingFileWriter#0;class#Main#0" />
                 <element signature="method#listToString#0;class#Main#0" />
                 <element signature="method#listConcatination#0;class#Main#0" />
                 <element signature="method#saveImage#0;class#Main#0" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/awokenNameList.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-864" />
           </provider>
         </entry>
       </file>
@@ -98,6 +103,11 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Malik" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -143,7 +153,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546487471805" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546504747579" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -232,7 +242,7 @@
       <workItem from="1545507929702" duration="2817000" />
       <workItem from="1545510910641" duration="13615000" />
       <workItem from="1545772557820" duration="9406000" />
-      <workItem from="1546478874345" duration="5167000" />
+      <workItem from="1546478874345" duration="10476000" />
     </task>
     <task id="LOCAL-00001" summary="list con">
       <created>1544167923854</created>
@@ -248,11 +258,18 @@
       <option name="project" value="LOCAL" />
       <updated>1545526807451</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="list con">
+      <created>1546487563782</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1546487563782</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91322000" />
+    <option name="totallyTimeSpent" value="96631000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -265,9 +282,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12846482" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12846482" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -276,13 +292,13 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32829374" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4936034" visible="true" weight="0.31425485" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4936034" visible="true" weight="0.31425485" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="5" weight="0.32919255" />
+      <window_info anchor="bottom" id="TODO" order="5" weight="0.32829374" />
       <window_info anchor="bottom" id="Terminal" order="6" weight="0.32919255" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5063966" side_tool="true" weight="0.3148358" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32919255" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32829374" />
       <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.4978678" weight="0.32721382" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
@@ -312,9 +328,9 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>196</line>
+          <line>41</line>
           <properties />
-          <option name="timeStamp" value="35" />
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -338,13 +354,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="57" selection-start-line="11" selection-start-column="57" selection-end-line="11" selection-end-column="57" />
+        <state relative-caret-position="346">
+          <caret line="47" column="75" selection-start-line="47" selection-start-column="75" selection-end-line="47" selection-end-column="75" />
           <folding>
+            <element signature="e#0#13637#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="method#isSkill#0;class#Main#0" />
-            <element signature="method#skillNameEffect#0;class#Main#0" />
             <element signature="method#searchSkill#0;class#Main#0" />
+            <element signature="e#5218#5525#1" />
+            <element signature="method#skillNameEffect#0;class#Main#0" />
             <element signature="method#searchName#0;class#Main#0" />
             <element signature="method#searchAwoken#0;class#Main#0" />
             <element signature="method#isAssist#0;class#Main#0" />
@@ -352,12 +369,16 @@
             <element signature="method#findElement#0;class#Main#0" />
             <element signature="method#findMaxStat#0;class#Main#0" />
             <element signature="method#readHTML#0;class#Main#0" />
-            <element signature="method#writeUsingFileWriter#0;class#Main#0" />
             <element signature="method#listToString#0;class#Main#0" />
             <element signature="method#listConcatination#0;class#Main#0" />
             <element signature="method#saveImage#0;class#Main#0" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/awokenNameList.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-864" />
       </provider>
     </entry>
   </component>

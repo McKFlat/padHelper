@@ -1,3 +1,8 @@
+/* Scrapping program created by Malik M. 2018/2019 for a Puzzle and Dragons team building application.
+   http://www.puzzledragonx.com was used to scrape all information. Any inaccurate content
+   may be due to japanese version of the game.
+ */
+
 
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -9,6 +14,7 @@ import javax.imageio.*;
                                         //TODO SAVE IMAGES  monster, Awoken Skill, Elements
                                         //TODO DELIMIT MONSTER BY |. STRUCTURE.TXT
                                         //TODO MAPPING FOR AWOKEN SKILL AND NAME
+
                                         //TODO FILL BOOK?
 
 
@@ -18,8 +24,11 @@ class Main {
         List<String> monsterBook = new ArrayList<>();
         List<String> awoSkillBook = new ArrayList<>();
         String completeMonsterBook;
-        List<String> awoSkillList = new ArrayList<>();
-        List<String> awoNameEffectList = new ArrayList<>();
+        List<String> awoSkillList = new ArrayList<>(); //skill IDs
+        List<String> awoNameEffectList = new ArrayList<>(); //skill Effect
+        List<String> awoNameList = new ArrayList<>(); //skill name
+
+
 
 
 
@@ -29,16 +38,22 @@ class Main {
 
         //TODO~~~~~~~~~~~~~~~~~~TESTING GROUNDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
-        System.out.println(searchAwoken(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=4413"),awoSkillList));
-/*
 
+        for(int i=0; i <= awoSkillList.size()-1; i++) {
+
+            awoSkillName(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=" + awoSkillList.get(i)), awoNameList, awoSkillList);
+
+        }
+        System.out.println(listToString(awoNameList));
+        writeUsingFileWriter(listToString(awoNameList), "awokenNameList.txt");
+        /*
         //TODO~~~~~~~~~~~~~~~~~~AWOKEN SKILL LIST~~~~~~~~~~~~~~~~~~~~~~~~~~~
         isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
 
 
        for(int i = 0; i < awoSkillList.size(); i++){
-        skillNameEffect(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=" +
-                awoSkillList.get(i)), awoNameEffectList);
+
+                awoSkillName(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=" + i), awoNameList, awoSkillList);
        }
         listConcatination(awoSkillBook,awoSkillList,awoNameEffectList);
         System.out.println(listToString(awoSkillBook));
@@ -55,13 +70,6 @@ catch(IOException e){
     System.out.println(e);
 }
 
-
-
-
-
-//
-
-
         //TODO~~~~~SAVE ALL IMAGES~~~~~
         try {
             saveImage("http://www.puzzledragonx.com/en/img/book/1.png");
@@ -77,43 +85,6 @@ catch(IOException e){
 
      //     TODO~~~~~AWOKEN skill name
 
-
-
-    //gets current awoken skill list
-    public static void isSkill(String html, List<String> skillList){
-        boolean skillExist = true;
-        String htmlText = html;
-        List<String> workingID = new ArrayList<>();
-
-        for(int i = 1; i <= 80; i++){
-            String start = "awokenskill-list.asp?s=" + i + "\"";
-            if (htmlText.indexOf(start) == -1) {
-                skillExist = false;
-            }
-            else{
-                workingID.add(start + i);
-                skillList.add(Integer.toString(i) + " ");
-            }
-        }
-
-        // **** Adding skill name next to skill ID number
-        //TODO add name next to skill id
-
-        //System.out.println(listToString(skillList));
-
-    }
-
-    //gets awoken skills effect
-    public static void skillNameEffect(String html, List<String> awoSkillEffect){
-        String descStart = "</td><td style=\"padding-top: 8px;\">";
-        String descEnd = "<hr class=\"awokenline\"></td><td style=\"width: 100%;\">";
-
-        String htmlText = html;
-        List<String> name = awoSkillEffect;
-
-        name.add(htmlText.substring(htmlText.indexOf(descStart) + descStart.length(), htmlText.indexOf(descEnd)) + " ");
-
-    }
     //gets information of different skills
     public static String searchSkill(String html) {
         String htmlText = html;
@@ -171,6 +142,54 @@ catch(IOException e){
         return activeSkill;
     }
 
+    //gets current awoken skill list
+    public static void isSkill(String html, List<String> skillList){
+        boolean skillExist = true;
+        String htmlText = html;
+        List<String> workingID = new ArrayList<>();
+
+        for(int i = 1; i <= 80; i++){
+            String start = "awokenskill-list.asp?s=" + i + "\"";
+            if (htmlText.indexOf(start) == -1) {
+                skillExist = false;
+            }
+            else{
+                workingID.add(start + i);
+                skillList.add(Integer.toString(i) + " ");
+            }
+        }
+
+        // **** Adding skill name next to skill ID number
+        //TODO add name next to skill id
+
+        //System.out.println(listToString(skillList));
+
+    }
+    //gets awoken skill names
+    public static void awoSkillName(String html, List<String> skillName, List<String> skillList){
+        String keyStart = "<td style=\"padding-top: 8px;\">";
+        String keyEnd   = "<hr class=\"awokenline\">";
+
+        if(html.indexOf(keyStart) > 0) {
+            skillName.add(html.substring(html.indexOf(keyStart) + keyStart.length(), html.indexOf(keyEnd)) + "\n");
+        }
+        else{
+            System.out.println("ERROR SKILL NOT FOUND");
+        }
+    }
+    //gets awoken skills effect
+    public static void skillNameEffect(String html, List<String> awoSkillEffect){
+        String descStart = "</td><td style=\"padding-top: 8px;\">";
+        String descEnd = "<hr class=\"awokenline\"></td><td style=\"width: 100%;\">";
+
+        String htmlText = html;
+        List<String> name = awoSkillEffect;
+
+        name.add(htmlText.substring(htmlText.indexOf(descStart) + descStart.length(), htmlText.indexOf(descEnd)) + " ");
+
+    }
+
+
     //gets monster names
     public static String searchName(String html) {
         String htmlText = html;
@@ -188,8 +207,6 @@ catch(IOException e){
     }
 
     //gets monster awoken skills
-    //TODO ADD TO SKILL BOOK
-
     public static String searchAwoken(String html, List<String> skillList){
 
 
@@ -212,6 +229,7 @@ catch(IOException e){
 
         return "";
     }
+
 
     //checks to see if monster can assist
     public static boolean isAssist(String html) {
@@ -334,8 +352,8 @@ catch(IOException e){
         return content;
     }
 
-    public static void writeUsingFileWriter(String data) {
-        File file = new File("C:\\Users\\Arctic\\Desktop\\Coding Projects\\readHTMLtoTxt\\MonsterBook.txt"); //creates a new file called MonsterBook.txt
+    public static void writeUsingFileWriter(String data, String fileName) {
+        File file = new File("C:\\Users\\Arctic\\Desktop\\Coding Projects\\readHTMLtoTxt\\" + fileName); //creates a new file
         FileWriter fr = null;
 
         try {
