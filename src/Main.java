@@ -43,39 +43,34 @@ class Main {
         isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
 
 
-       for(int i = 0; i < awoSkillList.size(); i++){
-
-                awoSkillName(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=" + i), awoNameList, awoSkillList);
+        for(int i = 0; i < awoSkillList.size(); i++){
+            awoSkillName(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=" + i), awoNameList, awoSkillList);
        }
-        listConcatination(awoSkillBook,awoSkillList,awoNameEffectList);
-        System.out.println(listToString(awoSkillBook));
+
 
 */
 
         //TODO~~~~~~~~~~~~~~~~~~~SAVE MONSTER IMAGES~~~~~~~~~~~~~~~~~~~~~~~~
-/*
 
-try {
-    saveImage("http://www.puzzledragonx.com/en/img/book/1.png");
-}
-catch(IOException e){
-    System.out.println(e);
-}
+
 
         //TODO~~~~~SAVE ALL IMAGES~~~~~
-        try {
-            saveImage("http://www.puzzledragonx.com/en/img/book/1.png");
+        for (int i = 4001; i <= 5044; i++) {
+            try {
+                saveImage("http://www.puzzledragonx.com/en/img/book/" + i + ".png", i + ".png");
+            } catch (IOException e) {
+                System.out.println(e);
+            }
         }
-        catch(IOException e){
-            System.out.println(e);
-        }
-
+/*
         //TODO~~~~~ENABLE ONLY WHEN completeMonsterBook is finished~~~~~
-        //completeMonsterBook = listToString(monsterBook);
-        // writeUsingFileWriter(completeMonsterBook); */
+        completeMonsterBook = listToString(monsterBook);
+        writeUsingFileWriter(completeMonsterBook);
+
+ */
     }
 
-     //     TODO~~~~~AWOKEN skill name
+    //     TODO~~~~~AWOKEN skill name
 
     //gets information of different skills
     public static String searchSkill(String html) {
@@ -157,6 +152,7 @@ catch(IOException e){
         //System.out.println(listToString(skillList));
 
     }
+
     //gets awoken skill names
     public static void awoSkillName(String html, List<String> skillName, List<String> skillList){
         String keyStart = "<td style=\"padding-top: 8px;\">";
@@ -384,12 +380,12 @@ catch(IOException e){
     public static void saveImage(String imageUrl, String i) throws IOException {
 
         BufferedImage image = null;
-        String MonsterID = i;
+        String pictureName = i;
         URL url = new URL(imageUrl);
         image = ImageIO.read(url);
 
-        File file = new File("C:\\Users\\Arctic\\Desktop\\Coding Projects\\readHTMLtoTxt\\awokenImages\\" + MonsterID );
-        System.out.println(MonsterID);
+        File file = new File("C:\\Users\\Arctic\\Desktop\\Coding Projects\\readHTMLtoTxt\\MonsterBookImages\\" + pictureName );
+        System.out.println(pictureName);
 
         ImageIO.write(image, "png", file);
 
