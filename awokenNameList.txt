@@ -1,0 +1,61 @@
+Increase HP by 200
+Increase ATK by 100
+Increase RCV by 50
+Reduce damage from Fire enemies by 5%
+Reduce damage from Water enemies by 5%
+Reduce damage from Wood enemies by 5%
+Reduce damage from Light enemies by 5%
+Reduce damage from Dark enemies by 5%
+Heal for 800 HP when you clear any drops
+50% Chance for this monster to resist bind
+20% Chance to resist darkness and blind orb spawns
+20% Chance to resist jammer spawns
+20% Chance to resist poison spawns
+Enhanced "+" fire orbs have a 20% chance of appearing and increase "+" fire orbs damage by 5%
+Enhanced "+" water orbs have a 20% chance of appearing and increase "+" water orbs damage by 5%
+Enhanced "+" wood orbs have a 20% chance of appearing and increase "+" wood orbs damage by 5%
+Enhanced "+" light orbs have a 20% chance of appearing and increase "+" light orbs damage by 5%
+Enhanced "+" dark orbs have a 20% chance of appearing and increase "+" dark orbs damage by 5%
+The time you can move orbs is increased by 0.5 seconds
+Eliminating 1 row of hearts will reduce binds by 3 turns
+The entire team starts with 1 turn worth of skills charged
+Eliminating 1 row of fire orbs will increase your fire damage by 10%
+Eliminating 1 row of water orbs will increase your water damage by 10%
+Eliminating 1 row of wood orbs will increase your wood damage by 10%
+Eliminating 1 row of light orbs will increase your light damage by 10%
+Eliminating 1 row of dark orbs will increase your dark damage by 10%
+Eliminating exactly 4 connected orbs of the same color for 1.5x ATK on 2 enemies
+20% chance to resist team skill-lock
+Enhanced "+" heart orbs have a 20% chance of appearing and increase "+" heart orbs heal amount
+1.5x stat boost in Multiplayer Dungeons
+3x ATK against Dragon type enemies ( for this card only )
+3x ATK against God type enemies ( for this card only )
+3x ATK against Devil type enemies ( for this card only )
+3x ATK against Machine type enemies ( for this card only )
+3x ATK against Attacker type enemies ( for this card only )
+3x ATK against Physical type enemies ( for this card only )
+3x ATK against Healer type enemies ( for this card only )
+3x ATK against Balanced type enemies ( for this card only )
+3x ATK against Awaken Material type enemies ( for this card only )
+3x ATK against Enhance Material type enemies ( for this card only )
+3x ATK against Vendor Material type enemies ( for this card only )
+3x ATK against Evolve Material type enemies ( for this card only )
+2x ATK for this card with 7 or more combos
+Card with this will ignore 100% of enemy DEF when team attacks with Fire, Water, Wood, Light, and Dark attributes
+Card with this will deal 1 fixed damage follow-up attack when matching 1 column of heal orbs
+Increase Team HP by 5%
+Increase Team RCV by 10%
+Card with this awoken skill will penetrate void damage shields and deal extra 2.5x damage when matching a 3x3 block of orbs.
+Card with this awoken skill will transfer awoken skills to another card during assist
+Increase ATK by 2x for cards with this awoken skill and deal 2 fixed damage follow-up attack when matching a 3x3 block of orbs
+Card with this awoken skill will charge skill by 1 turn when team attacks with 5 attributes
+100% Chance for this monster to resist bind
+The time you can move orbs is increased by 1 second
+100% Chance to resist Cloud spawns
+100% Chance to resist Immobility spawns
+The entire team starts with 2 turn worth of skills charged
+Increase ATK for this monster by 1.5x when HP is 80% or more
+Increase ATK for this monster by 2x when HP is 50% or less
+Matching 5 orbs in a L formation will reduce damage taken by 5%
+Matching 5 orbs in a L formation will increase damage for this monster by 1.5x.  Also unlocks orbs
+5x ATK for this card with 10 or more combos
