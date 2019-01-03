@@ -1,0 +1,14 @@
+2 text files.
+
+· Monster
+    Name, element, Assist?, cost, stat, skill data, awoken skills (through ID)
+
+
+
+· Awoken skill
+    used for mapping awoken skill to name and picture
+
+Folder for images
+    · monster
+    · Awoken Skill
+    · Elements

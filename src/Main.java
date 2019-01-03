@@ -6,13 +6,17 @@ import java.net.URLConnection;
 import java.util.*;
 import java.util.List;
 import javax.imageio.*;
+                                        //TODO SAVE IMAGES  monster, Awoken Skill, Elements
+                                        //TODO DELIMIT MONSTER BY |. STRUCTURE.TXT
+                                        //TODO MAPPING FOR AWOKEN SKILL AND NAME
+                                        //TODO FILL BOOK?
 
 
 class Main {
     public static void main(String[] args) {
         //System.out.println(searchTitle());
         List<String> monsterBook = new ArrayList<>();
-        List<String> skillBook = new ArrayList<>();
+        List<String> awoSkillBook = new ArrayList<>();
         String completeMonsterBook;
         List<String> awoSkillList = new ArrayList<>();
         List<String> awoNameEffectList = new ArrayList<>();
@@ -20,11 +24,29 @@ class Main {
 
 
 
+        //TODO~~~~~~~~~~~~~~~~~~READ HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        //System.out.println(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=4413"));
 
-
+        //TODO~~~~~~~~~~~~~~~~~~TESTING GROUNDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
+        System.out.println(searchAwoken(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=4413"),awoSkillList));
 /*
-        System.out.println(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=4"));
 
+        //TODO~~~~~~~~~~~~~~~~~~AWOKEN SKILL LIST~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
+
+
+       for(int i = 0; i < awoSkillList.size(); i++){
+        skillNameEffect(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=" +
+                awoSkillList.get(i)), awoNameEffectList);
+       }
+        listConcatination(awoSkillBook,awoSkillList,awoNameEffectList);
+        System.out.println(listToString(awoSkillBook));
+
+*/
+
+        //TODO~~~~~~~~~~~~~~~~~~~SAVE MONSTER IMAGES~~~~~~~~~~~~~~~~~~~~~~~~
+/*
 
 try {
     saveImage("http://www.puzzledragonx.com/en/img/book/1.png");
@@ -34,22 +56,10 @@ catch(IOException e){
 }
 
 
-        isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
-
-       // skillNameEffect(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList, skillBook);
-
-
-//       System.out.println(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=5"));
-    for (int monsterID = 3; monsterID <= awoSkillList.size()-1; monsterID++) {
-          skillNameEffect(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=" + awoSkillList.get(monsterID)), awoNameEffectList);
-         }
-
-        System.out.println( awoSkillList.size() + " | | " + awoNameEffectList.size());
-        listConcatination(skillBook, awoSkillList, awoNameEffectList);
-        System.out.println(listToString(skillBook));
 
 
 
+//
 
 
         //TODO~~~~~SAVE ALL IMAGES~~~~~
@@ -64,12 +74,12 @@ catch(IOException e){
         //completeMonsterBook = listToString(monsterBook);
         // writeUsingFileWriter(completeMonsterBook); */
     }
-     //     TODO~~~~~EVOLUTION TREE, MAX STATS
-     //     TODO~~~~~AWOKEN skill, SUPER AWOKEN, MAYBE DROP LOCATIONS, Type
+
+     //     TODO~~~~~AWOKEN skill name
 
 
 
-
+    //gets current awoken skill list
     public static void isSkill(String html, List<String> skillList){
         boolean skillExist = true;
         String htmlText = html;
@@ -93,32 +103,18 @@ catch(IOException e){
 
     }
 
-    public static void skillNameEffect(String html, List<String> skillList){
+    //gets awoken skills effect
+    public static void skillNameEffect(String html, List<String> awoSkillEffect){
         String descStart = "</td><td style=\"padding-top: 8px;\">";
         String descEnd = "<hr class=\"awokenline\"></td><td style=\"width: 100%;\">";
 
         String htmlText = html;
-        List<String> name = skillList;
+        List<String> name = awoSkillEffect;
 
         name.add(htmlText.substring(htmlText.indexOf(descStart) + descStart.length(), htmlText.indexOf(descEnd)) + " ");
 
     }
-
-    public static String searchName(String html) {
-        String htmlText = html;
-        String name;
-
-        String start = "<div class=\"name\"><h1>";
-        String end = "</h1></div>";//<div class=\"stars\">";
-
-
-        int keyStart = htmlText.indexOf(start);
-        int keyEnd = htmlText.indexOf(end);
-        name = htmlText.substring(keyStart + start.length(), keyEnd);
-
-        return name;
-    }
-
+    //gets information of different skills
     public static String searchSkill(String html) {
         String htmlText = html;
         String activeSkill = "";
@@ -175,6 +171,49 @@ catch(IOException e){
         return activeSkill;
     }
 
+    //gets monster names
+    public static String searchName(String html) {
+        String htmlText = html;
+        String name;
+
+        String start = "<div class=\"name\"><h1>";
+        String end = "</h1></div>";//<div class=\"stars\">";
+
+
+        int keyStart = htmlText.indexOf(start);
+        int keyEnd = htmlText.indexOf(end);
+        name = htmlText.substring(keyStart + start.length(), keyEnd);
+
+        return name;
+    }
+
+    //gets monster awoken skills
+    //TODO ADD TO SKILL BOOK
+
+    public static String searchAwoken(String html, List<String> skillList){
+
+
+
+        for(int i = 0; i <= skillList.size()-1; i++) {
+            String key = "awokenskill.asp?s=" + skillList.get(i) + "\">";
+            key = key.substring(0, key.indexOf(" ")) + key.substring(key.indexOf(" ")+1);
+
+            String tempHtml = html;
+            int count = 0; //counts multiple occurrence of same awoken skill
+            while (tempHtml.contains(key)) {
+
+                tempHtml = tempHtml.substring(tempHtml.indexOf(key) + key.length());
+                count++;
+                System.out.println(count + ":" + skillList.get(i) + ":" + i);
+            }
+
+
+        }
+
+        return "";
+    }
+
+    //checks to see if monster can assist
     public static boolean isAssist(String html) {
         boolean assist = true;
         String htmlText = html;
@@ -187,6 +226,7 @@ catch(IOException e){
         return assist;
     }
 
+    //gets cost of monster
     public static int findCost(String html){
         int cost = 0;
 
@@ -206,6 +246,7 @@ catch(IOException e){
         return cost;
     }
 
+    //gets monster element
     public static String findElement(String html){
         String monElement = "";
         String water = "nofollow\">Water";
@@ -247,6 +288,33 @@ catch(IOException e){
 
         return monElement;
    }
+
+    //gets max atk,rcv,hp for monster
+    public static int[] findMaxStat(String html){
+        int[] maxStat = new int[4];
+        String hpTag = "stathp\">HP</td><td>";
+        String atkTag = "statatk\">ATK</td><td>";
+        String rcvTag = "statrcv\">RCV</td><td>";
+        String temp = "";
+
+        temp = html.substring(html.indexOf(hpTag) + hpTag.length(),html.indexOf(hpTag) + hpTag.length()+25);
+        temp = temp.substring(temp.indexOf("<td>") + 4, temp.lastIndexOf("</td>"));
+        maxStat[0] = Integer.parseInt(temp);
+
+        temp = html.substring(html.indexOf(atkTag) + atkTag.length(),html.indexOf(atkTag) + atkTag.length()+25);
+        temp = temp.substring(temp.indexOf("<td>") + 4, temp.lastIndexOf("</td>"));
+        maxStat[1] = Integer.parseInt(temp);
+
+        temp = html.substring(html.indexOf(rcvTag) + rcvTag.length(),html.indexOf(rcvTag) + rcvTag.length()+25);
+        temp = temp.substring(temp.indexOf("<td>") + 4, temp.lastIndexOf("</td>"));
+        maxStat[2] = Integer.parseInt(temp);
+
+        maxStat[3] = maxStat[0]/10 + maxStat[1]/5 + maxStat[2] / 3; //weighted stat number
+
+
+        return maxStat;
+    }
+
 
     //TODO~~~~~SEPARATE MONSTERS BY NEW LINE, STATS BY | in listToString
 
@@ -300,7 +368,7 @@ catch(IOException e){
 
     public static void listConcatination(List<String> finished, List<String> first, List<String> second){
 
-        for(int i = 0; i < second.size()-1; i++){
+        for(int i = 0; i < second.size(); i++){
             finished.add(first.get(i) + second.get(i) + "\n");
         }
     }
