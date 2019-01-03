@@ -11,7 +11,7 @@ import java.net.URLConnection;
 import java.util.*;
 import java.util.List;
 import javax.imageio.*;
-                                        //TODO SAVE IMAGES  monster, Awoken Skill, Elements
+                                        //TODO SAVE IMAGES  monster
                                         //TODO DELIMIT MONSTER BY |. STRUCTURE.TXT
                                         //TODO MAPPING FOR AWOKEN SKILL AND NAME
 
@@ -32,21 +32,13 @@ class Main {
 
 
 
-
         //TODO~~~~~~~~~~~~~~~~~~READ HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         //System.out.println(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=4413"));
 
         //TODO~~~~~~~~~~~~~~~~~~TESTING GROUNDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
 
-        for(int i=0; i <= awoSkillList.size()-1; i++) {
 
-            awoSkillName(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp?s=" + awoSkillList.get(i)), awoNameList, awoSkillList);
-
-        }
-        System.out.println(listToString(awoNameList));
-        writeUsingFileWriter(listToString(awoNameList), "awokenNameList.txt");
-        /*
+ /*
         //TODO~~~~~~~~~~~~~~~~~~AWOKEN SKILL LIST~~~~~~~~~~~~~~~~~~~~~~~~~~~
         isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
 
@@ -177,6 +169,7 @@ catch(IOException e){
             System.out.println("ERROR SKILL NOT FOUND");
         }
     }
+
     //gets awoken skills effect
     public static void skillNameEffect(String html, List<String> awoSkillEffect){
         String descStart = "</td><td style=\"padding-top: 8px;\">";
@@ -188,7 +181,6 @@ catch(IOException e){
         name.add(htmlText.substring(htmlText.indexOf(descStart) + descStart.length(), htmlText.indexOf(descEnd)) + " ");
 
     }
-
 
     //gets monster names
     public static String searchName(String html) {
@@ -229,7 +221,6 @@ catch(IOException e){
 
         return "";
     }
-
 
     //checks to see if monster can assist
     public static boolean isAssist(String html) {
@@ -333,7 +324,6 @@ catch(IOException e){
         return maxStat;
     }
 
-
     //TODO~~~~~SEPARATE MONSTERS BY NEW LINE, STATS BY | in listToString
 
     public static String readHTML(String websiteLink) {
@@ -353,7 +343,7 @@ catch(IOException e){
     }
 
     public static void writeUsingFileWriter(String data, String fileName) {
-        File file = new File("C:\\Users\\Arctic\\Desktop\\Coding Projects\\readHTMLtoTxt\\" + fileName); //creates a new file
+        File file = new File("C:\\Users\\Arctic\\Desktop\\Coding Projects\\readHTMLtoTxt\\MonsterBookImages\\" + fileName); //creates a new file
         FileWriter fr = null;
 
         try {
@@ -391,14 +381,14 @@ catch(IOException e){
         }
     }
 
-    public static void saveImage(String imageUrl) throws IOException {
+    public static void saveImage(String imageUrl, String i) throws IOException {
 
         BufferedImage image = null;
-        String MonsterID = imageUrl.substring(imageUrl.indexOf("book/" )+5);
+        String MonsterID = i;
         URL url = new URL(imageUrl);
         image = ImageIO.read(url);
 
-        File file = new File("C:\\Users\\Arctic\\Desktop\\Coding Projects\\readHTMLtoTxt\\MonsterBookImages\\" + MonsterID );
+        File file = new File("C:\\Users\\Arctic\\Desktop\\Coding Projects\\readHTMLtoTxt\\awokenImages\\" + MonsterID );
         System.out.println(MonsterID);
 
         ImageIO.write(image, "png", file);
