@@ -1,8 +1,10 @@
 /* Scrapping program created by Malik M. 2018/2019 for a Puzzle and Dragons team building application.
    http://www.puzzledragonx.com was used to scrape all information. Any inaccurate content
-   may be due to japanese version of the game.
+   may be due to japanese version of the game having a different version than NA.
  */
 
+
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -28,15 +30,19 @@ class Main {
         List<String> awoNameEffectList = new ArrayList<>(); //skill Effect
         List<String> awoNameList = new ArrayList<>(); //skill name
 
-
-
-
+//TODO FIX findElement
 
         //TODO~~~~~~~~~~~~~~~~~~READ HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        //System.out.println(readHTML("http://www.puzzledragonx.com/en/monster.asp?n=4413"));
+        String htmlText = readHTML("http://www.puzzledragonx.com/en/monster.asp?n=1");
+        String monsterData = "";
 
-        //TODO~~~~~~~~~~~~~~~~~~TESTING GROUNDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        monsterData += "monName: " + searchName(htmlText) + " element: " + findElement(htmlText) + " " +
+                isAssist(htmlText) + " cost:" + findCost(htmlText) + " stat:" + findMaxStat(htmlText) + " sSkill: "
+                + searchSkill(htmlText);
 
+        System.out.printf("\n %s", monsterData);
+        // System.out.println(htmlText);
+        //System.out.println(htmlText);
 
  /*
         //TODO~~~~~~~~~~~~~~~~~~AWOKEN SKILL LIST~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -54,21 +60,22 @@ class Main {
 
 
 
-        //TODO~~~~~SAVE ALL IMAGES~~~~~
+ /*       //TODO~~~~~SAVE ALL IMAGES~~~~~
         for (int i = 4001; i <= 5044; i++) {
             try {
                 saveImage("http://www.puzzledragonx.com/en/img/book/" + i + ".png", i + ".png");
             } catch (IOException e) {
                 System.out.println(e);
             }
-        }
+   */
+    }
 /*
         //TODO~~~~~ENABLE ONLY WHEN completeMonsterBook is finished~~~~~
         completeMonsterBook = listToString(monsterBook);
         writeUsingFileWriter(completeMonsterBook);
 
  */
-    }
+
 
     //     TODO~~~~~AWOKEN skill name
 
@@ -78,52 +85,51 @@ class Main {
         String activeSkill = "";
         String start = "";
         String end = "";
+        boolean isActive = htmlText.contains("<span class=\"blue\">None</span>");
+        boolean isLeader = htmlText.contains("<span class=\"green\">None</span>");
 
-        for (int i = 1; i <= 5; i++) {
-            // skill name
-            if (i == 1) {
-                start = "<span class=\"blue\">";
-                end = "</span></a></td></tr><tr><td class=\"title\">Effects";
-                int keyStart = htmlText.indexOf(start);
-                int keyEnd = htmlText.indexOf(end);
-                activeSkill = htmlText.substring(keyStart + start.length(), keyEnd);
-            }
-            // skill description
-            else if (i == 2) {
-                start = "Effects:</td><td class=\"value-end\">";
-                end = "</td></tr><tr><td class=\"title\">Cool Down";
-                int keyStart = htmlText.indexOf(start);
-                int keyEnd = htmlText.indexOf(end);
-                activeSkill += ", " + htmlText.substring(keyStart + start.length(), keyEnd);
-            }
-            // cool down
-            else if (i == 3) {
-                start = "Cool Down:</td><td class=\"value-end\">";
-                end = "</td></tr><tr><td class=\"title\"></td><td class=\"value-end\">This card <span class=\"red\">";
-                int keyStart = htmlText.indexOf(start);
-                int keyEnd = htmlText.indexOf(end);
-                activeSkill += ", " + htmlText.substring(keyStart + start.length(), keyEnd);
-            }
-            // leader Skill name
-            else if (i == 4){
-                start ="<span class=\"green\">";
-                end = "</span></a></td></tr><tr><td class=\"title\">Effects:</td><td class=\"value-end\">";
-                int keyStart = htmlText.indexOf(start);
-                int keyEnd = htmlText.lastIndexOf(end);
-                activeSkill += ", " + htmlText.substring(keyStart + start.length(), keyEnd);
-            }
-            // leader skill effect
-            else if (i == 5){
-                start ="Effects:</td><td class=\"value-end\">";
-                int keyStart = htmlText.lastIndexOf(start);
-                int keyEnd = keyStart + start.length()+200;
-                String temp = html.substring(keyStart + start.length(), keyEnd);
+        if (!isActive) {
+            //skill name
+            start = "<span class=\"blue\">";
+            end = "</span></a></td></tr><tr><td class=\"title\">Effects";
+            int keyStart = htmlText.indexOf(start);
+            int keyEnd = htmlText.indexOf(end);
+            activeSkill = " sName: " + htmlText.substring(keyStart + start.length(), keyEnd);
 
-                activeSkill += ", " + temp.substring(0, temp.indexOf("<"));
+            //skill description
+            start = "Effects:</td><td class=\"value-end\">";
+            end = "</td></tr><tr><td class=\"title\">Cool Down";
+            keyStart = htmlText.indexOf(start);
+            keyEnd = htmlText.indexOf(end);
+            activeSkill += " sDesc: " + htmlText.substring(keyStart + start.length(), keyEnd);
 
-            }
+            //skill cooldown
+            start = "Cool Down:</td><td class=\"value-end\">";
+            end = "</td></tr><tr><td class=\"title\"></td><td class=\"value-end\">This card <span class=\"red\">";
+            keyStart = htmlText.indexOf(start);
+            keyEnd = htmlText.indexOf(end);
+            activeSkill += " CoolD: " + htmlText.substring(keyStart + start.length(), keyEnd);
 
-        }
+        }else{ activeSkill +=" sName: None sDesc: None CoolD: N/a";}
+
+        if(!isLeader){
+            //leader skill name
+            start = "<span class=\"green\">";
+            end = "</span></a></td></tr><tr><td class=\"title\">Effects:</td><td class=\"value-end\">";
+            int keyStart = htmlText.indexOf(start);
+            int keyEnd = htmlText.lastIndexOf(end);
+            activeSkill += " sLeaderName: " + htmlText.substring(keyStart + start.length(), keyEnd);
+
+            //leader desc
+            start = "Effects:</td><td class=\"value-end\">";
+            keyStart = htmlText.lastIndexOf(start);
+            keyEnd = keyStart + start.length() + 200;
+            String temp = html.substring(keyStart + start.length(), keyEnd);
+            activeSkill += " sLeaderEffect: " + temp.substring(0, temp.indexOf("<"));
+
+
+        }else{ activeSkill += " sLeaderName: None sLeaderEffect: None";}
+
 
 
         return activeSkill;
@@ -219,13 +225,13 @@ class Main {
     }
 
     //checks to see if monster can assist
-    public static boolean isAssist(String html) {
-        boolean assist = true;
+    public static String isAssist(String html) {
+        String assist = "true*";
         String htmlText = html;
         String start = "This card <span class=\"green\">";
 
         if (htmlText.indexOf(start) == -1) {
-            assist = false;
+            assist = "false*";
         }
 
         return assist;
@@ -295,26 +301,33 @@ class Main {
    }
 
     //gets max atk,rcv,hp for monster
-    public static int[] findMaxStat(String html){
-        int[] maxStat = new int[4];
+    public static String findMaxStat(String html){
+        String maxStat = "";
         String hpTag = "stathp\">HP</td><td>";
         String atkTag = "statatk\">ATK</td><td>";
         String rcvTag = "statrcv\">RCV</td><td>";
         String temp = "";
+        int hp;
+        int atk;
+        int rcv;
+
 
         temp = html.substring(html.indexOf(hpTag) + hpTag.length(),html.indexOf(hpTag) + hpTag.length()+25);
         temp = temp.substring(temp.indexOf("<td>") + 4, temp.lastIndexOf("</td>"));
-        maxStat[0] = Integer.parseInt(temp);
+        maxStat += " Hp: " + Integer.parseInt(temp);
+        hp = Integer.parseInt(temp);
 
         temp = html.substring(html.indexOf(atkTag) + atkTag.length(),html.indexOf(atkTag) + atkTag.length()+25);
         temp = temp.substring(temp.indexOf("<td>") + 4, temp.lastIndexOf("</td>"));
-        maxStat[1] = Integer.parseInt(temp);
+        maxStat += " Atk: " + Integer.parseInt(temp);
+        atk = Integer.parseInt(temp);
 
         temp = html.substring(html.indexOf(rcvTag) + rcvTag.length(),html.indexOf(rcvTag) + rcvTag.length()+25);
         temp = temp.substring(temp.indexOf("<td>") + 4, temp.lastIndexOf("</td>"));
-        maxStat[2] = Integer.parseInt(temp);
+        maxStat += " Rcv: " + Integer.parseInt(temp);
+        rcv = Integer.parseInt(temp);
 
-        maxStat[3] = maxStat[0]/10 + maxStat[1]/5 + maxStat[2] / 3; //weighted stat number
+        maxStat += " Weighted: " + (hp/10 + atk/5 + rcv/3); //weighted stat number
 
 
         return maxStat;
