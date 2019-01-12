@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8d378e20-6cd6-4617-9a13-ec192ff8cb34" name="Default" comment="list con">
+    <list default="true" id="8d378e20-6cd6-4617-9a13-ec192ff8cb34" name="Default" comment="fixed searchSkill; all methods complete">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Structure.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Structure.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -20,20 +21,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="112" column="65" selection-start-line="112" selection-start-column="65" selection-end-line="112" selection-end-column="65" />
+            <state relative-caret-position="463">
+              <caret line="214" column="32" selection-start-line="214" selection-start-column="32" selection-end-line="214" selection-end-column="32" />
               <folding>
-                <element signature="e#0#11873#0" expanded="true" />
                 <element signature="method#isSkill#0;class#Main#0" />
                 <element signature="method#awoSkillName#0;class#Main#0" />
                 <element signature="method#skillNameEffect#0;class#Main#0" />
                 <element signature="method#searchName#0;class#Main#0" />
-                <element signature="method#searchAwoken#0;class#Main#0" />
                 <element signature="method#isAssist#0;class#Main#0" />
                 <element signature="method#findCost#0;class#Main#0" />
                 <element signature="method#findElement#0;class#Main#0" />
                 <element signature="method#findMaxStat#0;class#Main#0" />
-                <element signature="method#readHTML#0;class#Main#0" />
                 <element signature="method#writeUsingFileWriter#0;class#Main#0" />
                 <element signature="method#listToString#0;class#Main#0" />
                 <element signature="method#listConcatination#0;class#Main#0" />
@@ -46,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Structure.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="66">
+              <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -63,10 +61,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>leaderskill</find>
-      <find>AWOKEN SKILLS</find>
-      <find>class=&quot;onload&quot;</find>
-      <find>class=&quot;onload&quot; title=&quot;</find>
       <find>increase HP by 200</find>
       <find>&lt;/td&gt;&lt;td style=&quot;padding-top: 8px;&quot;&gt;</find>
       <find>s=5</find>
@@ -93,6 +87,10 @@
       <find>awokenskill.asp?s=12&quot;&gt;</find>
       <find>nofollow&quot;&gt;Fire</find>
       <find>None</find>
+      <find>Mercenary Tribe of the Phantom</find>
+      <find>Reduce enemies' defense</find>
+      <find>5 turn.</find>
+      <find>3&quot;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -118,17 +116,17 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="509" />
-    <option name="y" value="-15" />
-    <option name="width" value="960" />
-    <option name="height" value="1040" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1612" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -145,14 +143,14 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Course" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546984948396" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547332970000" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -245,7 +243,8 @@
       <workItem from="1546539520208" duration="3139000" />
       <workItem from="1546671120454" duration="41000" />
       <workItem from="1546936076171" duration="5538000" />
-      <workItem from="1546987589242" duration="6756000" />
+      <workItem from="1546987589242" duration="7146000" />
+      <workItem from="1547317909101" duration="7475000" />
     </task>
     <task id="LOCAL-00001" summary="list con">
       <created>1544167923854</created>
@@ -310,11 +309,18 @@
       <option name="project" value="LOCAL" />
       <updated>1546549891808</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fixed searchSkill; all methods complete">
+      <created>1547019523706</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1547019523706</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113829000" />
+    <option name="totallyTimeSpent" value="121694000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -329,7 +335,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11140725" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11247335" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -347,7 +353,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32829374" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Debug" order="11" sideWeight="0.4978678" weight="0.39848813" />
+      <window_info anchor="bottom" id="Debug" order="11" sideWeight="0.4978678" weight="0.31641468" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4978678" weight="0.32721382" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -407,22 +413,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="list con" />
-    <option name="LAST_COMMIT_MESSAGE" value="list con" />
+    <MESSAGE value="fixed searchSkill; all methods complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed searchSkill; all methods complete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>83</line>
+          <line>89</line>
           <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>261</line>
-          <properties />
-          <option name="timeStamp" value="2" />
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -500,34 +501,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/awokenNameList.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
+        <state relative-caret-position="258">
           <caret line="51" column="9" lean-forward="true" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Structure.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="66">
+          <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="112" column="65" selection-start-line="112" selection-start-column="65" selection-end-line="112" selection-end-column="65" />
+        <state relative-caret-position="463">
+          <caret line="214" column="32" selection-start-line="214" selection-start-column="32" selection-end-line="214" selection-end-column="32" />
           <folding>
-            <element signature="e#0#11873#0" expanded="true" />
             <element signature="method#isSkill#0;class#Main#0" />
             <element signature="method#awoSkillName#0;class#Main#0" />
             <element signature="method#skillNameEffect#0;class#Main#0" />
             <element signature="method#searchName#0;class#Main#0" />
-            <element signature="method#searchAwoken#0;class#Main#0" />
             <element signature="method#isAssist#0;class#Main#0" />
             <element signature="method#findCost#0;class#Main#0" />
             <element signature="method#findElement#0;class#Main#0" />
             <element signature="method#findMaxStat#0;class#Main#0" />
-            <element signature="method#readHTML#0;class#Main#0" />
             <element signature="method#writeUsingFileWriter#0;class#Main#0" />
             <element signature="method#listToString#0;class#Main#0" />
             <element signature="method#listConcatination#0;class#Main#0" />

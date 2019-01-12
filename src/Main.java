@@ -3,7 +3,6 @@
    may be due to japanese version of the game having a different version than NA.
  */
 
-
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.awt.image.BufferedImage;
@@ -13,36 +12,31 @@ import java.net.URLConnection;
 import java.util.*;
 import java.util.List;
 import javax.imageio.*;
-                                        //TODO SAVE IMAGES  monster
-                                        //TODO DELIMIT MONSTER BY |. STRUCTURE.TXT
+
                                         //TODO MAPPING FOR AWOKEN SKILL AND NAME
-
                                         //TODO FILL BOOK?
-
 
 class Main {
     public static void main(String[] args) {
         //System.out.println(searchTitle());
-        List<String> monsterBook = new ArrayList<>();
         List<String> awoSkillBook = new ArrayList<>();
         String completeMonsterBook;
         List<String> awoSkillList = new ArrayList<>(); //skill IDs
         List<String> awoNameEffectList = new ArrayList<>(); //skill Effect
         List<String> awoNameList = new ArrayList<>(); //skill name
-
-//TODO FIX findElement
-
-        //TODO~~~~~~~~~~~~~~~~~~READ HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        String htmlText = readHTML("http://www.puzzledragonx.com/en/monster.asp?n=1");
         String monsterData = "";
 
+        //TODO~~~~~~~~~~~~~~~~~~READ HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        isAwoSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
+        String htmlText = readHTML("http://www.puzzledragonx.com/en/monster.asp?n=1730");
+
+
         monsterData += "monName: " + searchName(htmlText) + " element: " + findElement(htmlText) + " " +
-                isAssist(htmlText) + " cost:" + findCost(htmlText) + " stat:" + findMaxStat(htmlText) + " sSkill: "
-                + searchSkill(htmlText);
+                isAssist(htmlText) + " cost:" + findCost(htmlText) + " stat:" + findMaxStat(htmlText) + " awoSkill: " +
+                searchAwoken(htmlText, awoSkillList) + " sSkill: " + searchSkill(htmlText);
 
         System.out.printf("\n %s", monsterData);
-        // System.out.println(htmlText);
-        //System.out.println(htmlText);
+       //System.out.println(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"));
 
  /*
         //TODO~~~~~~~~~~~~~~~~~~AWOKEN SKILL LIST~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -55,10 +49,6 @@ class Main {
 
 
 */
-
-        //TODO~~~~~~~~~~~~~~~~~~~SAVE MONSTER IMAGES~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 
  /*       //TODO~~~~~SAVE ALL IMAGES~~~~~
         for (int i = 4001; i <= 5044; i++) {
@@ -98,14 +88,18 @@ class Main {
 
             //skill description
             start = "Effects:</td><td class=\"value-end\">";
-            end = "</td></tr><tr><td class=\"title\">Cool Down";
+
+            if(htmlText.contains("<td class=\"orbdisplay\">")) {
+                end = "</td></tr><tr><td>&nbsp;</td><td class=\"orbdisplay\">";//"</td></tr><tr><td class=\"title\">Cool Down";
+            }else{end = "</td></tr><tr><td class=\"title\">Cool Down";}
+
             keyStart = htmlText.indexOf(start);
             keyEnd = htmlText.indexOf(end);
             activeSkill += " sDesc: " + htmlText.substring(keyStart + start.length(), keyEnd);
 
             //skill cooldown
             start = "Cool Down:</td><td class=\"value-end\">";
-            end = "</td></tr><tr><td class=\"title\"></td><td class=\"value-end\">This card <span class=\"red\">";
+            end = "</td></tr><tr><td class=\"title\"></td><td class=\"value-end\">This card <span class=";
             keyStart = htmlText.indexOf(start);
             keyEnd = htmlText.indexOf(end);
             activeSkill += " CoolD: " + htmlText.substring(keyStart + start.length(), keyEnd);
@@ -114,7 +108,7 @@ class Main {
 
         if(!isLeader){
             //leader skill name
-            start = "<span class=\"green\">";
+            start = "\"><span class=\"green\">";
             end = "</span></a></td></tr><tr><td class=\"title\">Effects:</td><td class=\"value-end\">";
             int keyStart = htmlText.indexOf(start);
             int keyEnd = htmlText.lastIndexOf(end);
@@ -123,7 +117,7 @@ class Main {
             //leader desc
             start = "Effects:</td><td class=\"value-end\">";
             keyStart = htmlText.lastIndexOf(start);
-            keyEnd = keyStart + start.length() + 200;
+            keyEnd = keyStart + start.length() + 800;
             String temp = html.substring(keyStart + start.length(), keyEnd);
             activeSkill += " sLeaderEffect: " + temp.substring(0, temp.indexOf("<"));
 
@@ -136,20 +130,17 @@ class Main {
     }
 
     //gets current awoken skill list
-    public static void isSkill(String html, List<String> skillList){
-        boolean skillExist = true;
-        String htmlText = html;
-        List<String> workingID = new ArrayList<>();
+    public static void isAwoSkill(String html, List<String> skillList){
 
-        for(int i = 1; i <= 80; i++){
+        String htmlText = html;
+
+        for(int i = 1; i <= 70; i++){
             String start = "awokenskill-list.asp?s=" + i + "\"";
-            if (htmlText.indexOf(start) == -1) {
-                skillExist = false;
-            }
-            else{
-                workingID.add(start + i);
+
+            if (htmlText.contains(start)) {
                 skillList.add(Integer.toString(i) + " ");
-            }
+            }else{}
+
         }
 
         // **** Adding skill name next to skill ID number
@@ -202,7 +193,7 @@ class Main {
 
     //gets monster awoken skills
     public static String searchAwoken(String html, List<String> skillList){
-
+        String awoken = "";
 
 
         for(int i = 0; i <= skillList.size()-1; i++) {
@@ -215,13 +206,13 @@ class Main {
 
                 tempHtml = tempHtml.substring(tempHtml.indexOf(key) + key.length());
                 count++;
-                System.out.println(count + ":" + skillList.get(i) + ":" + i);
+                awoken += "a$"  + skillList.get(i) ;
             }
 
 
         }
 
-        return "";
+        return awoken;
     }
 
     //checks to see if monster can assist

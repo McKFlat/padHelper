@@ -1,7 +1,7 @@
 2 text files.
 
 · Monster
-    Name, element, Assist?, cost, stat, skill data, awoken skills (through ID)
+    Name, element, Assist?, cost, stat, awoken skills (through ID), skill data
 
 
 
