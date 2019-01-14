@@ -4,6 +4,7 @@
  */
 
 import com.sun.org.apache.xpath.internal.operations.Bool;
+import jdk.jfr.events.ExceptionThrownEvent;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -20,25 +21,30 @@ class Main {
     public static void main(String[] args) {
         //System.out.println(searchTitle());
         List<String> awoSkillBook = new ArrayList<>();
-        String completeMonsterBook;
         List<String> awoSkillList = new ArrayList<>(); //skill IDs
         List<String> awoNameEffectList = new ArrayList<>(); //skill Effect
         List<String> awoNameList = new ArrayList<>(); //skill name
-        String monsterData = "";
+        String monsterData = readFromFile("monsterData");
 
-        //TODO~~~~~~~~~~~~~~~~~~READ HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+        System.out.println(monsterData);
+
+       //TODO~~~~~~~~~~~~~~~~~~READ HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         isAwoSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
-        String htmlText = readHTML("http://www.puzzledragonx.com/en/monster.asp?n=1730");
+        for(int i = 0; i <= 1338; i++) {
+            String htmlText = readHTML("http://www.puzzledragonx.com/en/monster.asp?n=" + i);
 
 
-        monsterData += "monName: " + searchName(htmlText) + " element: " + findElement(htmlText) + " " +
+            monsterData += "#" + i + " monName: " + searchName(htmlText) + " element: " + findElement(htmlText) + " " +
                 isAssist(htmlText) + " cost:" + findCost(htmlText) + " stat:" + findMaxStat(htmlText) + " awoSkill: " +
-                searchAwoken(htmlText, awoSkillList) + " sSkill: " + searchSkill(htmlText);
+                searchAwoken(htmlText, awoSkillList) + " sSkill: " + searchSkill(htmlText) + "\n";
 
-        System.out.printf("\n %s", monsterData);
-       //System.out.println(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"));
-
+            System.out.printf("\n %s", monsterData);
+        }
+        writeUsingFileWriter(monsterData);
+        //System.out.println(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"));
  /*
+
         //TODO~~~~~~~~~~~~~~~~~~AWOKEN SKILL LIST~~~~~~~~~~~~~~~~~~~~~~~~~~~
         isSkill(readHTML("http://www.puzzledragonx.com/en/awokenskill-list.asp"), awoSkillList);
 
@@ -342,8 +348,8 @@ class Main {
         return content;
     }
 
-    public static void writeUsingFileWriter(String data, String fileName) {
-        File file = new File("C:\\Users\\Arctic\\Desktop\\Coding Projects\\readHTMLtoTxt\\MonsterBookImages\\" + fileName); //creates a new file
+    public static void writeUsingFileWriter(String data) {
+        File file = new File("C:\\Users\\Arctic\\Desktop\\Coding Projects\\readHTMLtoTxt\\monsterData"); //creates a new file
         FileWriter fr = null;
 
         try {
@@ -394,5 +400,23 @@ class Main {
         ImageIO.write(image, "png", file);
 
     }
+
+    public static String readFromFile(String fileName) {
+        String updatedText = "";
+
+        try{
+            Scanner input = new Scanner(new File(fileName));
+            while (input.hasNext() ){
+                updatedText += input.nextLine()+"\n";
+            }
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+
+        return updatedText;
+    }
+
 
 }
