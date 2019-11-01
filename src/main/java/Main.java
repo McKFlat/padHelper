@@ -3,9 +3,6 @@
    may be due to bad translations from the Japanese version to NA.
  */
 
-import netscape.javascript.JSException;
-import netscape.javascript.JSObject;
-
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
@@ -26,45 +23,7 @@ class Main {
         List<String> awoNameList = new ArrayList<>(); //skill name
         //String monsterData = readFromFile("monsterData");
 
-        JSObject name = new JSObject() {
-            @Override
-            public Object call(String methodName, Object... args) throws JSException {
-                return null;
-            }
 
-            @Override
-            public Object eval(String s) throws JSException {
-                return null;
-            }
-
-            @Override
-            public Object getMember(String name) throws JSException {
-                return null;
-            }
-
-            @Override
-            public void setMember(String name, Object value) throws JSException {
-
-            }
-
-            @Override
-            public void removeMember(String name) throws JSException {
-
-            }
-
-            @Override
-            public Object getSlot(int index) throws JSException {
-                return null;
-            }
-
-            @Override
-            public void setSlot(int index, Object value) throws JSException {
-
-            }
-        };
-
-        name.setMember("Lightning", 0);
-        System.out.println(name.getSlot(0));
         //System.out.println(monsterData);
 /*
        //TODO~~~~~~~~~~~~~~~~~~READ HTML~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
