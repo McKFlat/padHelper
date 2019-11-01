@@ -1,6 +1,6 @@
-package Resources;/* Scrapping program created by Malik M. 2018/2019 for a Puzzle and Dragons team building application.
+/* Scrapping program created by Malik M. 2018 for a Puzzle and Dragons team building application.
    http://www.puzzledragonx.com was used to scrape all information. Any inaccurate content
-   may be due to japanese version of the game having a different version than NA.
+   may be due to bad translations from the Japanese version to NA.
  */
 
 import netscape.javascript.JSException;
