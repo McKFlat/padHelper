@@ -1,1 +1,1 @@
-padHelper is a program that scrapes the http://www.puzzledragonx.com/ pages. Orignally designed to be a team building helper. This program has been repurposed to explore normalization, JSON, JavaFX, and databases
+padHelper is a program that scrapes the http://www.puzzledragonx.com/ pages. Orignally designed to be a team building helper. This program has been repurposed to explore data normalization, JSON, JavaFX, and databases
